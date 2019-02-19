@@ -2,18 +2,28 @@
 
     Private _nom As String
     Private _prenom As String
-    Private _dateCreation As Date
+    Private _dateNaissance As String
+    Private _dateCreation As String
     Private _numeroCompte As String
     Private _typeCompte As String
     Private _solde As Double
 
     Public libelleErreur As String
 
-    Public Property laDateCreation As Date
+    Public Property laDateNaissance As String
+        Get
+            Return _dateNaissance
+        End Get
+        Set(value As String)
+            _dateNaissance = value
+        End Set
+    End Property
+
+    Public Property laDateCreation As String
         Get
             Return _dateCreation
         End Get
-        Set(value As Date)
+        Set(value As String)
             _dateCreation = value
         End Set
     End Property
@@ -56,9 +66,10 @@
 
     Public Property leTypeCompte As String
         Get
-            Return Nothing
+            Return _typeCompte
         End Get
         Set(value As String)
+            _typeCompte = value
         End Set
     End Property
 

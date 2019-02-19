@@ -1,36 +1,81 @@
 ﻿Public Class Form1
+
+    Public gestionComptes As GestionDesComptes = New GestionDesComptes
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Close()
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button_add.Click
-        ListBox_nom.Items.Add(TextBox_SaisieNom.Text)
-        TextBox_SaisieNom.Text = ""
-        TextBox_SaisieNom.Focus()
+        Dim nouveauCompte As Object
+
+        If ComboBox_type.Text = COMPTECOURANT Then
+            nouveauCompte = New Compte
+        Else
+            nouveauCompte = New CompteAvecPlafond
+            CType(nouveauCompte, CompteAvecPlafond).lePlafond = TextBox_plafond.Text
+        End If
+
+        CType(nouveauCompte, Compte).leNom = TextBox_nom.Text
+        CType(nouveauCompte, Compte).lePrenom = TextBox_prenom.Text
+        CType(nouveauCompte, Compte).laDateNaissance = TextBox_dateNaissance.Text
+        CType(nouveauCompte, Compte).leSolde = TextBox_solde.Text
+        CType(nouveauCompte, Compte).leTypeCompte = ComboBox_type.Text
+
+        gestionComptes.ajouterUnCompte(nouveauCompte)
 
     End Sub
 
-    Private Sub ListBox_nom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox_nom.SelectedIndexChanged
-
-    End Sub
 
     Private Sub Button_moins_Click(sender As Object, e As EventArgs) Handles Button_moins.Click
         If Not ListBox_nom.SelectedIndex = -1 Then
+            gestionComptes.supprimerUnCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex))
             ListBox_nom.Items.Remove(ListBox_nom.SelectedItem)
         End If
     End Sub
 
     Private Sub ListBox_nom_Click(sender As Object, e As EventArgs) Handles ListBox_nom.Click
-        TextBox_SaisieNom.Text = ListBox_nom.Items(ListBox_nom.SelectedIndex)
-        ' TextBox_SaisieNom.Text = ListBox_nom.SelectedItem
-        TextBox1.Text = ListBox_nom.SelectedIndex
+        Dim monCompte As Object = Nothing
+
+        monCompte = gestionComptes.rechercherCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex))
+
+        If Not IsNothing(monCompte) Then
+            If CType(monCompte, Compte).leTypeCompte = COMPTECOURANT Then
+                TextBox_plafond.Enabled = False
+                TextBox_plafond.Text = ""
+            Else
+                TextBox_plafond.Enabled = True
+                TextBox_plafond.Text = CType(monCompte, CompteAvecPlafond).lePlafond
+            End If
+
+            TextBox_nom.Text = CType(monCompte, Compte).leNom
+            TextBox_prenom.Text = CType(monCompte, Compte).lePrenom
+            TextBox_dateNaissance.Text = CType(monCompte, Compte).laDateNaissance
+            TextBox_solde.Text = CType(monCompte, Compte).leSolde
+            ComboBox_type.Text = CType(monCompte, Compte).leTypeCompte
+        End If
 
     End Sub
 
+
     Private Sub Button_modif_Click(sender As Object, e As EventArgs) Handles Button_modif.Click
+        Dim nouveauCompte As Object
+
         If Not ListBox_nom.SelectedIndex = -1 Then
-            ListBox_nom.Items(ListBox_nom.SelectedIndex) = TextBox_SaisieNom.Text
+            If ComboBox_type.Text = COMPTECOURANT Then
+                nouveauCompte = New Compte
+            Else
+                nouveauCompte = New CompteAvecPlafond
+                CType(nouveauCompte, CompteAvecPlafond).lePlafond = TextBox_plafond.Text
+            End If
+
+            CType(nouveauCompte, Compte).leNom = TextBox_nom.Text
+            CType(nouveauCompte, Compte).lePrenom = TextBox_prenom.Text
+            CType(nouveauCompte, Compte).laDateNaissance = TextBox_dateNaissance.Text
+            CType(nouveauCompte, Compte).leSolde = TextBox_solde.Text
+            CType(nouveauCompte, Compte).leTypeCompte = ComboBox_type.Text
+
+            gestionComptes.modifierUnCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex), nouveauCompte)
         End If
 
     End Sub
@@ -43,5 +88,11 @@
             ListBox_nom.Items.Clear()
             ListBox_nom.Items.AddRange(System.IO.File.ReadAllLines(nomFichier))
         End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        ListBox_nom.Items.Clear()
+        gestionComptes.listeComptes(ListBox_nom.Items)
+
     End Sub
 End Class
