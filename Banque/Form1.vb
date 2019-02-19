@@ -19,6 +19,7 @@
         CType(nouveauCompte, Compte).leNom = TextBox_nom.Text
         CType(nouveauCompte, Compte).lePrenom = TextBox_prenom.Text
         CType(nouveauCompte, Compte).laDateNaissance = TextBox_dateNaissance.Text
+        CType(nouveauCompte, Compte).laDateCreation = TextBox_dateCreation.Text
         CType(nouveauCompte, Compte).leSolde = TextBox_solde.Text
         CType(nouveauCompte, Compte).leTypeCompte = ComboBox_type.Text
 
@@ -53,6 +54,7 @@
             TextBox_nom.Text = CType(monCompte, Compte).leNom
             TextBox_prenom.Text = CType(monCompte, Compte).lePrenom
             TextBox_dateNaissance.Text = CType(monCompte, Compte).laDateNaissance
+            TextBox_dateCreation.Text = CType(monCompte, Compte).laDateCreation
             TextBox_solde.Text = CType(monCompte, Compte).leSolde
             ComboBox_type.Text = CType(monCompte, Compte).leTypeCompte
         End If
@@ -75,6 +77,7 @@
             CType(nouveauCompte, Compte).leNom = TextBox_nom.Text
             CType(nouveauCompte, Compte).lePrenom = TextBox_prenom.Text
             CType(nouveauCompte, Compte).laDateNaissance = TextBox_dateNaissance.Text
+            CType(nouveauCompte, Compte).laDateCreation = TextBox_dateCreation.Text
             CType(nouveauCompte, Compte).leSolde = TextBox_solde.Text
             CType(nouveauCompte, Compte).leTypeCompte = ComboBox_type.Text
 
@@ -108,4 +111,10 @@
         gestionComptes.listeComptes(ListBox_nom.Items)
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        With New ImportComptes(gestionComptes)
+
+        End With
+        rafraichirListeComptes()
+    End Sub
 End Class

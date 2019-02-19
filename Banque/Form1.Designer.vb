@@ -45,6 +45,7 @@ Partial Class form_accueil
         Me.Button_moins = New System.Windows.Forms.Button()
         Me.Button_add = New System.Windows.Forms.Button()
         Me.ListBox_nom = New System.Windows.Forms.ListBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -260,11 +261,21 @@ Partial Class form_accueil
         Me.ListBox_nom.Size = New System.Drawing.Size(120, 238)
         Me.ListBox_nom.TabIndex = 5
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(44, 321)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 28
+        Me.Button2.Text = "Ajout auto"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'form_accueil
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(626, 357)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -305,4 +316,5 @@ Partial Class form_accueil
     Friend WithEvents Button_moins As Button
     Friend WithEvents Button_add As Button
     Friend WithEvents ListBox_nom As ListBox
+    Friend WithEvents Button2 As Button
 End Class
