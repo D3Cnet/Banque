@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class form_accueil
 
     Public gestionComptes As GestionDesComptes = New GestionDesComptes
 
@@ -6,7 +6,7 @@
         Close()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button_add.Click
+    Private Sub Button_add_Click(sender As Object, e As EventArgs) Handles Button_add.Click
         Dim nouveauCompte As Object
 
         If ComboBox_type.Text = COMPTECOURANT Then
@@ -24,6 +24,7 @@
 
         gestionComptes.ajouterUnCompte(nouveauCompte)
 
+        rafraichirListeComptes()
     End Sub
 
 
@@ -32,6 +33,7 @@
             gestionComptes.supprimerUnCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex))
             ListBox_nom.Items.Remove(ListBox_nom.SelectedItem)
         End If
+        rafraichirListeComptes()
     End Sub
 
     Private Sub ListBox_nom_Click(sender As Object, e As EventArgs) Handles ListBox_nom.Click
@@ -58,6 +60,7 @@
     End Sub
 
 
+
     Private Sub Button_modif_Click(sender As Object, e As EventArgs) Handles Button_modif.Click
         Dim nouveauCompte As Object
 
@@ -78,9 +81,10 @@
             gestionComptes.modifierUnCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex), nouveauCompte)
         End If
 
+        rafraichirListeComptes()
     End Sub
 
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs)
         Dim nomFichier As String = ""
 
         If OpenFileDialog_fichier.ShowDialog() = DialogResult.OK Then
@@ -90,9 +94,18 @@
         End If
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub ComboBox_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_type.SelectedIndexChanged
+        If ComboBox_type.Text = COMPTECOURANT Then
+            TextBox_plafond.Enabled = False
+            TextBox_plafond.Text = ""
+        Else
+            TextBox_plafond.Enabled = True
+        End If
+    End Sub
+
+    Private Sub rafraichirListeComptes()
         ListBox_nom.Items.Clear()
         gestionComptes.listeComptes(ListBox_nom.Items)
-
     End Sub
+
 End Class
