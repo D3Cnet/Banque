@@ -40,6 +40,10 @@
     Private Sub ListBox_nom_Click(sender As Object, e As EventArgs) Handles ListBox_nom.Click
         Dim monCompte As Object = Nothing
 
+        If ListBox_nom.SelectedIndex = -1 Then
+            Exit Sub
+        End If
+
         monCompte = gestionComptes.rechercherCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex))
 
         If Not IsNothing(monCompte) Then
@@ -117,4 +121,6 @@
         End With
         rafraichirListeComptes()
     End Sub
+
+
 End Class

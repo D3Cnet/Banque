@@ -259,6 +259,7 @@ Partial Class form_accueil
         Me.ListBox_nom.Location = New System.Drawing.Point(40, 29)
         Me.ListBox_nom.Name = "ListBox_nom"
         Me.ListBox_nom.Size = New System.Drawing.Size(120, 238)
+        Me.ListBox_nom.Sorted = True
         Me.ListBox_nom.TabIndex = 5
         '
         'Button2
