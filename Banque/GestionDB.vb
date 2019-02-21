@@ -4,7 +4,7 @@ Public Class GestionDB
     ' Gestion de la base de données
     ' Code trouvé sur le site https://codes-sources.commentcamarche.net/source/54387-tutorial-utilisation-sqlite-avec-visual-basic-net-2010-express
 
-    Private _Database As String
+    Private _Database As String = CHEMINDB
     Dim CON As New SQLiteConnection
     '
     Public Sub OpenDataBase()
@@ -34,13 +34,14 @@ Public Class GestionDB
 
     Public Sub ajouterCompteDB(monCompte As Object)
         Try
-            Dim strSQL As String = "INSERT INTO COMPTE VALUES (@Nom,@prenom,@dateNaissance,@codeCompte,@dateCreation,@typeCompte,@solde,@plafond)"
+            Dim strSQL As String = "INSERT INTO COMPTE VALUES (@id,@Nom,@prenom,@dateNaissance,@codeCompte,@dateCreation,@typeCompte,@solde,@plafond)"
             Dim cmd = New SQLiteCommand(strSQL, CON)
+            cmd.Parameters.AddWithValue("@id", nouvelIdentifiantUniqueDB())
             cmd.Parameters.AddWithValue("@Nom", CType(monCompte, Compte).leNom)
             cmd.Parameters.AddWithValue("@prenom", CType(monCompte, Compte).lePrenom)
             cmd.Parameters.AddWithValue("@dateNaissance", CType(monCompte, Compte).laDateNaissance)
             cmd.Parameters.AddWithValue("@codeCompte", CType(monCompte, Compte).leNumeroCompte)
-            cmd.Parameters.AddWithValue("@dateCreation", CType(monCompte, Compte).laDateCreation))
+            cmd.Parameters.AddWithValue("@dateCreation", CType(monCompte, Compte).laDateCreation)
             cmd.Parameters.AddWithValue("@typeCompte", CType(monCompte, Compte).leTypeCompte)
             cmd.Parameters.AddWithValue("@solde", CType(monCompte, Compte).leSolde)
 
@@ -57,15 +58,25 @@ Public Class GestionDB
         End Try
     End Sub
 
-    Public Sub DBupdateINDIVIDU(ByVal INDIVIDU As m_INDIVIDU)
+    Public Sub majCompteDB(monCompte As Object)
         Try
-            Dim strSQL As String = "UPDATE INDIVIDU SET Nom=@Nom,Age=@Age,Membre=@Membre,Photo=@Photo WHERE ID=@ID"
+            Dim strSQL As String = "UPDATE Compte SET nom=@Nom,prenom=@prenom,dateNaissance=@dateNaissance,dateCreation=@dateCreation,typeCompte=@typeCompte,solde=@solde,plafond=@plafond WHERE codeCompte=@codeCompte"
+
             Dim cmd = New SQLiteCommand(strSQL, CON)
-            cmd.Parameters.AddWithValue("@ID", INDIVIDU.ID)
-            cmd.Parameters.AddWithValue("@Nom", INDIVIDU.Nom)
-            cmd.Parameters.AddWithValue("@Age", INDIVIDU.Age)
-            cmd.Parameters.AddWithValue("@Membre", INDIVIDU.Membre)
-            cmd.Parameters.AddWithValue("@Photo", ImageToByteArray(INDIVIDU.Photo))
+            cmd.Parameters.AddWithValue("@Nom", CType(monCompte, Compte).leNom)
+            cmd.Parameters.AddWithValue("@prenom", CType(monCompte, Compte).lePrenom)
+            cmd.Parameters.AddWithValue("@dateNaissance", CType(monCompte, Compte).laDateNaissance)
+            cmd.Parameters.AddWithValue("@codeCompte", CType(monCompte, Compte).leNumeroCompte)
+            cmd.Parameters.AddWithValue("@dateCreation", CType(monCompte, Compte).laDateCreation)
+            cmd.Parameters.AddWithValue("@typeCompte", CType(monCompte, Compte).leTypeCompte)
+            cmd.Parameters.AddWithValue("@solde", CType(monCompte, Compte).leSolde)
+
+            If CType(monCompte, Compte).leTypeCompte <> COMPTECOURANT Then
+                cmd.Parameters.AddWithValue("@plafond", CType(monCompte, CompteAvecPlafond).lePlafond)
+            Else
+                cmd.Parameters.AddWithValue("@plafond", "")
+            End If
+
             cmd.ExecuteNonQuery()
             cmd.Dispose()
         Catch ex As Exception
@@ -73,34 +84,49 @@ Public Class GestionDB
         End Try
     End Sub
 
-    Public Function DBgetINDIVIDU(ByVal Idx As Integer) As m_INDIVIDU
-        Dim strSQL As String = "SELECT * FROM INDIVIDU WHERE ID= " & Idx
-        Dim INDIVIDU As New m_INDIVIDU
+    Public Function chercherCompteDB(numCompte As String) As Object
+        Dim strSQL As String = "SELECT * FROM compte WHERE codeCompte=""" & numCompte & """"
+        Dim leCompte As New CompteAvecPlafond
         Dim cmd = New SQLiteCommand(strSQL, CON)
         Dim DR As SQLiteDataReader = cmd.ExecuteReader
         '
         While (DR.Read())
-            INDIVIDU.ID = DR(0)
-            INDIVIDU.Nom = DR(1)
-            INDIVIDU.Age = DR(2)
-            INDIVIDU.Membre = DR(3)
-            INDIVIDU.Photo = ByteArrayToImage(DR(4))
+            leCompte.leNom = DR(1)
+            leCompte.lePrenom = DR(2)
+            leCompte.laDateNaissance = DR(3)
+            leCompte.leNumeroCompte = DR(4)
+            leCompte.laDateCreation = DR(5)
+            leCompte.leTypeCompte = DR(6)
+            leCompte.leSolde = DR(7)
+            leCompte.lePlafond = DR(8)
         End While
         DR.Close()
         cmd.Dispose()
-        Return INDIVIDU
+        Return leCompte
     End Function
 
-    Public Sub DBdeleteINDIVIDU(ByVal Idx As Integer)
-        Dim strSQL As String = "DELETE FROM INDIVIDU WHERE ID= " & Idx
+    Public Sub supprimerCompteDB(numCompte As String)
+        Dim strSQL As String = "DELETE FROM compte WHERE codeCompte= " & numCompte
         Dim cmd = New SQLiteCommand(strSQL, CON)
         cmd.ExecuteNonQuery()
         cmd.Dispose()
     End Sub
 
-    Public Function DBNewIndexINDIVIDU() As Integer
+
+    Public Sub listeComptesDB(ByRef maCollection As ListBox.ObjectCollection)
+        Dim cmd = New SQLiteCommand("SELECT codeCompte FROM compte", CON)
+        Dim DR As SQLiteDataReader = cmd.ExecuteReader
+        maCollection.Clear()
+        While (DR.Read())
+            'DR(4) est le codeCompte
+            maCollection.Add(DR(0))
+        End While
+        DR.Close()
+    End Sub
+
+    Public Function nouvelIdentifiantUniqueDB() As Integer
         Dim NewID As Integer = 1
-        Dim cmd = New SQLiteCommand("SELECT MAX(ID) FROM INDIVIDU", CON)
+        Dim cmd = New SQLiteCommand("SELECT MAX(id) FROM Compte", CON)
         Try
             Dim DR As SQLiteDataReader = cmd.ExecuteReader
             While (DR.Read())
@@ -112,16 +138,4 @@ Public Class GestionDB
             Return NewID
         End Try
     End Function
-
-    Public Sub DBremplirListe(ByRef LST As ListBox) 'remarquez le ByRef
-        Dim cmd = New SQLiteCommand("SELECT ID,Nom FROM INDIVIDU", CON)
-        Dim DR As SQLiteDataReader = cmd.ExecuteReader
-        LST.Items.Clear()
-        While (DR.Read())
-            'DR(1) est le nom DR(0) est ID
-            LST.Items.Add(DR(1) & "    |" & DR(0))
-        End While
-        DR.Close()
-    End Sub
-
 End Class

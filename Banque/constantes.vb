@@ -5,6 +5,6 @@
     Public Const JEUNE As String = "Compte jeune"
     Public Const PEL As String = "Plan d'épargne logement"
 
-    Public Const cheminDB As String = "..\..\"
+    Public Const CHEMINDB As String = "C:\Users\dcamenen\source\repos\Banque\Banque\Banque.db"
 
 End Module

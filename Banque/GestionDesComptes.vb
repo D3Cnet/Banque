@@ -60,7 +60,7 @@
     End Function
 
 
-    Public Sub listeComptes(maCollection As ListBox.ObjectCollection)
+    Public Sub listeComptes(ByRef maCollection As ListBox.ObjectCollection)
         Dim leCompte As Compte
 
         For Each leCompte In _ListeComptes

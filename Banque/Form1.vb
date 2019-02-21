@@ -3,7 +3,8 @@ Option Strict On
 
 Public Class form_accueil
 
-    Public gestionComptes As GestionDesComptes = New GestionDesComptes
+    Public gestionComptes As GestionDesComptesDB = New GestionDesComptesDB
+    '    Public gestionComptesMEM As GestionDesComptes = New GestionDesComptes
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Close()
@@ -119,8 +120,12 @@ Public Class form_accueil
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        With New ImportComptes(gestionComptes)
-        End With
+        'With New ImportComptes(gestionComptesMEM)
+        'End With
+
+        'ListBox_nom.Items.Clear()
+        'gestionComptesMEM.listeComptes(ListBox_nom.Items)
+
         rafraichirListeComptes()
     End Sub
 
