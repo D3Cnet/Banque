@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class form_accueil
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class form_principale
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,10 @@ Partial Class form_accueil
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(form_principale))
+        Me.Button_quitter = New System.Windows.Forms.Button()
         Me.OpenFileDialog_fichier = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -45,20 +46,29 @@ Partial Class form_accueil
         Me.Button_moins = New System.Windows.Forms.Button()
         Me.Button_add = New System.Windows.Forms.Button()
         Me.ListBox_nom = New System.Windows.Forms.ListBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FichierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NouveauToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OuvrirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FermerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.QuitterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem_aide = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
+        'Button_quitter
         '
-        Me.Button1.Location = New System.Drawing.Point(513, 321)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Quitter"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button_quitter.Location = New System.Drawing.Point(513, 352)
+        Me.Button_quitter.Name = "Button_quitter"
+        Me.Button_quitter.Size = New System.Drawing.Size(75, 23)
+        Me.Button_quitter.TabIndex = 0
+        Me.Button_quitter.Text = "Quitter"
+        Me.Button_quitter.UseVisualStyleBackColor = True
         '
         'OpenFileDialog_fichier
         '
@@ -72,7 +82,7 @@ Partial Class form_accueil
         Me.GroupBox1.Controls.Add(Me.TextBox_prenom)
         Me.GroupBox1.Controls.Add(Me.TextBox_dateNaissance)
         Me.GroupBox1.Controls.Add(Me.TextBox_nom)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 43)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(360, 123)
         Me.GroupBox1.TabIndex = 24
@@ -137,7 +147,7 @@ Partial Class form_accueil
         Me.GroupBox2.Controls.Add(Me.TextBox_dateCreation)
         Me.GroupBox2.Controls.Add(Me.TextBox_solde)
         Me.GroupBox2.Controls.Add(Me.TextBox_plafond)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 157)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 188)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(360, 141)
         Me.GroupBox2.TabIndex = 25
@@ -215,11 +225,13 @@ Partial Class form_accueil
         '
         'GroupBox3
         '
+        Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox3.Controls.Add(Me.Button_modif)
         Me.GroupBox3.Controls.Add(Me.Button_moins)
         Me.GroupBox3.Controls.Add(Me.Button_add)
         Me.GroupBox3.Controls.Add(Me.ListBox_nom)
-        Me.GroupBox3.Location = New System.Drawing.Point(378, 12)
+        Me.GroupBox3.Location = New System.Drawing.Point(378, 43)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(236, 286)
         Me.GroupBox3.TabIndex = 27
@@ -255,6 +267,8 @@ Partial Class form_accueil
         '
         'ListBox_nom
         '
+        Me.ListBox_nom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ListBox_nom.FormattingEnabled = True
         Me.ListBox_nom.Location = New System.Drawing.Point(40, 29)
         Me.ListBox_nom.Name = "ListBox_nom"
@@ -262,27 +276,77 @@ Partial Class form_accueil
         Me.ListBox_nom.Sorted = True
         Me.ListBox_nom.TabIndex = 5
         '
-        'Button2
+        'MenuStrip1
         '
-        Me.Button2.Location = New System.Drawing.Point(44, 321)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 28
-        Me.Button2.Text = "Ajout auto"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FichierToolStripMenuItem, Me.ToolStripMenuItem_aide})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(626, 24)
+        Me.MenuStrip1.TabIndex = 28
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'form_accueil
+        'FichierToolStripMenuItem
+        '
+        Me.FichierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NouveauToolStripMenuItem, Me.ToolStripSeparator1, Me.OuvrirToolStripMenuItem, Me.FermerToolStripMenuItem, Me.ToolStripSeparator2, Me.QuitterToolStripMenuItem})
+        Me.FichierToolStripMenuItem.Name = "FichierToolStripMenuItem"
+        Me.FichierToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.FichierToolStripMenuItem.Text = "Fichier"
+        '
+        'NouveauToolStripMenuItem
+        '
+        Me.NouveauToolStripMenuItem.Name = "NouveauToolStripMenuItem"
+        Me.NouveauToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.NouveauToolStripMenuItem.Text = "Nouveau"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
+        '
+        'OuvrirToolStripMenuItem
+        '
+        Me.OuvrirToolStripMenuItem.Name = "OuvrirToolStripMenuItem"
+        Me.OuvrirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OuvrirToolStripMenuItem.Text = "Ouvrir..."
+        '
+        'FermerToolStripMenuItem
+        '
+        Me.FermerToolStripMenuItem.Name = "FermerToolStripMenuItem"
+        Me.FermerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.FermerToolStripMenuItem.Text = "Fermer"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
+        '
+        'QuitterToolStripMenuItem
+        '
+        Me.QuitterToolStripMenuItem.Name = "QuitterToolStripMenuItem"
+        Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.QuitterToolStripMenuItem.Text = "Quitter"
+        '
+        'ToolStripMenuItem_aide
+        '
+        Me.ToolStripMenuItem_aide.Name = "ToolStripMenuItem_aide"
+        Me.ToolStripMenuItem_aide.Size = New System.Drawing.Size(24, 20)
+        Me.ToolStripMenuItem_aide.Text = "?"
+        '
+        'form_principale
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(626, 357)
-        Me.Controls.Add(Me.Button2)
+        Me.ClientSize = New System.Drawing.Size(626, 391)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "form_accueil"
+        Me.Controls.Add(Me.Button_quitter)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.MenuStrip1
+        Me.MaximizeBox = False
+        Me.Name = "form_principale"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Gestion de comptes"
         Me.GroupBox1.ResumeLayout(False)
@@ -290,11 +354,14 @@ Partial Class form_accueil
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Button_quitter As Button
     Friend WithEvents OpenFileDialog_fichier As OpenFileDialog
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label5 As Label
@@ -317,5 +384,13 @@ Partial Class form_accueil
     Friend WithEvents Button_moins As Button
     Friend WithEvents Button_add As Button
     Friend WithEvents ListBox_nom As ListBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FichierToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NouveauToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OuvrirToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents FermerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents QuitterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem_aide As ToolStripMenuItem
 End Class

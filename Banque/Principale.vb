@@ -1,7 +1,7 @@
 ﻿Option Explicit On
 Option Strict On
 
-Public Class form_accueil
+Public Class form_principale
 
     Public gestionComptes As GestionDesComptesDB
     '    Public gestionComptesMEM As GestionDesComptes = New GestionDesComptes
@@ -16,7 +16,7 @@ Public Class form_accueil
         rafraichirListeComptes()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_quitter.Click, QuitterToolStripMenuItem.Click
         Close()
     End Sub
 
@@ -131,15 +131,9 @@ Public Class form_accueil
         gestionComptes.listeComptes(ListBox_nom.Items)
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'With New ImportComptes(gestionComptesMEM)
-        'End With
-
-        'ListBox_nom.Items.Clear()
-        'gestionComptesMEM.listeComptes(ListBox_nom.Items)
-
-        rafraichirListeComptes()
+    Private Sub ToolStripMenuItem_aide_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_aide.Click
+        Dim maFormAide As Form_aide
+        maFormAide = New Form_aide()
+        maFormAide.ShowDialog()
     End Sub
-
-
 End Class
