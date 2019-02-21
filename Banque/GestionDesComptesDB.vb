@@ -12,7 +12,7 @@
         Dim identifiant As String
         _autoIncremental = _gestionDB.nouvelIdentifiantUniqueDB()
 
-        identifiant = String.Format("{0:0000}", _autoIncremental) & "_" & Left(monCompte.leNom, 1) & Left(monCompte.lePrenom, 1) & "_" & Replace(monCompte.leTypeCompte, " ", "")
+        identifiant = String.Format("{0:0000}", _autoIncremental) & "-" & Left(monCompte.leNom, 1) & Left(monCompte.lePrenom, 1) & "-" & Replace(monCompte.leTypeCompte, " ", "")
 
         Return identifiant
     End Function
@@ -28,6 +28,7 @@
             monCompte.leNumeroCompte = nouvelIdentifiantCompte(monCompte)
             _gestionDB.ajouterCompteDB(monCompte)
         Else
+            monCompte.leNumeroCompte = numCompte
             _gestionDB.majCompteDB(monCompte)
         End If
     End Sub
@@ -38,11 +39,9 @@
     End Function
 
     Public Function modifierUnCompte(numCompte As String, compteModifie As Object) As Boolean
-        If supprimerUnCompte(numCompte) Then
-            ajouterUnCompte(compteModifie, numCompte)
-            Return True
-        End If
-        Return False
+        CType(compteModifie, Compte).leNumeroCompte = numCompte
+        _gestionDB.majCompteDB(compteModifie)
+        Return True
     End Function
 
 

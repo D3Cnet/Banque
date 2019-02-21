@@ -35,10 +35,12 @@ Public Class form_accueil
 
     Private Sub Button_moins_Click(sender As Object, e As EventArgs) Handles Button_moins.Click
         If Not ListBox_nom.SelectedIndex = -1 Then
-            gestionComptes.supprimerUnCompte(CType(ListBox_nom.Items(ListBox_nom.SelectedIndex), String))
-            ListBox_nom.Items.Remove(ListBox_nom.SelectedItem)
+            If MsgBox("Voulez-vous réellement effacer l'enregistrement ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Suppression") = MsgBoxResult.Yes Then
+                gestionComptes.supprimerUnCompte(CType(ListBox_nom.Items(ListBox_nom.SelectedIndex), String))
+                ListBox_nom.Items.Remove(ListBox_nom.SelectedItem)
+                rafraichirListeComptes()
+            End If
         End If
-        rafraichirListeComptes()
     End Sub
 
     Private Sub ListBox_nom_Click(sender As Object, e As EventArgs) Handles ListBox_nom.Click

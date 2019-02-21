@@ -106,7 +106,7 @@ Public Class GestionDB
     End Function
 
     Public Sub supprimerCompteDB(numCompte As String)
-        Dim strSQL As String = "DELETE FROM compte WHERE codeCompte= " & numCompte
+        Dim strSQL As String = "DELETE FROM compte WHERE codeCompte=""" & numCompte & """"
         Dim cmd = New SQLiteCommand(strSQL, CON)
         cmd.ExecuteNonQuery()
         cmd.Dispose()
