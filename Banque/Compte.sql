@@ -21,4 +21,8 @@ INSERT INTO `Compte` (id,nom,prenom,dateNaissance,codeCompte,dateCreation,typeCo
 INSERT INTO `Compte` (id,nom,prenom,dateNaissance,codeCompte,dateCreation,typeCompte,solde,plafond) VALUES (8,'GORSE','Thierry','01/01/1901','0008-GT-Pland''épargnelogement','22/05/1999','Plan d''épargne logement',2798.25,1200.0);
 INSERT INTO `Compte` (id,nom,prenom,dateNaissance,codeCompte,dateCreation,typeCompte,solde,plafond) VALUES (9,'LEMAISTRE','François','01/01/1901','0009-LF-Comptecourant','22/05/1999','Compte courant',652.3,'');
 INSERT INTO `Compte` (id,nom,prenom,dateNaissance,codeCompte,dateCreation,typeCompte,solde,plafond) VALUES (10,'POUPARD','Benjamin','01/01/1901','0010-PB-Comptejeune','22/05/1999','Compte jeune',99.8,1200.0);
+INSERT INTO `Compte` (id,nom,prenom,dateNaissance,codeCompte,dateCreation,typeCompte,solde,plafond) VALUES (11,'ZORRO','Zozo','01/01/1901','0011-ZZ-Comptejeune','22/05/1999','Compte jeune',20.0,100.0);
+CREATE UNIQUE INDEX IF NOT EXISTS `IcodeCompte` ON `Compte` (
+	`codeCompte`	ASC
+);
 COMMIT;

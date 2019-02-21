@@ -3,8 +3,18 @@ Option Strict On
 
 Public Class form_accueil
 
-    Public gestionComptes As GestionDesComptesDB = New GestionDesComptesDB
+    Public gestionComptes As GestionDesComptesDB
     '    Public gestionComptesMEM As GestionDesComptes = New GestionDesComptes
+
+    Public Sub New()
+
+        ' Cet appel est requis par le concepteur.
+        InitializeComponent()
+
+        ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
+        gestionComptes = New GestionDesComptesDB
+        rafraichirListeComptes()
+    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Close()
