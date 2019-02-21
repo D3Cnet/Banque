@@ -1,4 +1,7 @@
-﻿Public Class form_accueil
+﻿Option Explicit On
+Option Strict On
+
+Public Class form_accueil
 
     Public gestionComptes As GestionDesComptes = New GestionDesComptes
 
@@ -13,14 +16,14 @@
             nouveauCompte = New Compte
         Else
             nouveauCompte = New CompteAvecPlafond
-            CType(nouveauCompte, CompteAvecPlafond).lePlafond = TextBox_plafond.Text
+            CType(nouveauCompte, CompteAvecPlafond).lePlafond = CDbl(TextBox_plafond.Text)
         End If
 
         CType(nouveauCompte, Compte).leNom = TextBox_nom.Text
         CType(nouveauCompte, Compte).lePrenom = TextBox_prenom.Text
         CType(nouveauCompte, Compte).laDateNaissance = TextBox_dateNaissance.Text
         CType(nouveauCompte, Compte).laDateCreation = TextBox_dateCreation.Text
-        CType(nouveauCompte, Compte).leSolde = TextBox_solde.Text
+        CType(nouveauCompte, Compte).leSolde = CDbl(TextBox_solde.Text)
         CType(nouveauCompte, Compte).leTypeCompte = ComboBox_type.Text
 
         gestionComptes.ajouterUnCompte(nouveauCompte)
@@ -31,7 +34,7 @@
 
     Private Sub Button_moins_Click(sender As Object, e As EventArgs) Handles Button_moins.Click
         If Not ListBox_nom.SelectedIndex = -1 Then
-            gestionComptes.supprimerUnCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex))
+            gestionComptes.supprimerUnCompte(CType(ListBox_nom.Items(ListBox_nom.SelectedIndex), String))
             ListBox_nom.Items.Remove(ListBox_nom.SelectedItem)
         End If
         rafraichirListeComptes()
@@ -44,7 +47,7 @@
             Exit Sub
         End If
 
-        monCompte = gestionComptes.rechercherCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex))
+        monCompte = gestionComptes.rechercherCompte(CType(ListBox_nom.Items(ListBox_nom.SelectedIndex), String))
 
         If Not IsNothing(monCompte) Then
             If CType(monCompte, Compte).leTypeCompte = COMPTECOURANT Then
@@ -52,14 +55,14 @@
                 TextBox_plafond.Text = ""
             Else
                 TextBox_plafond.Enabled = True
-                TextBox_plafond.Text = CType(monCompte, CompteAvecPlafond).lePlafond
+                TextBox_plafond.Text = CStr(CType(monCompte, CompteAvecPlafond).lePlafond)
             End If
 
             TextBox_nom.Text = CType(monCompte, Compte).leNom
             TextBox_prenom.Text = CType(monCompte, Compte).lePrenom
             TextBox_dateNaissance.Text = CType(monCompte, Compte).laDateNaissance
             TextBox_dateCreation.Text = CType(monCompte, Compte).laDateCreation
-            TextBox_solde.Text = CType(monCompte, Compte).leSolde
+            TextBox_solde.Text = CStr(CType(monCompte, Compte).leSolde)
             ComboBox_type.Text = CType(monCompte, Compte).leTypeCompte
         End If
 
@@ -75,17 +78,17 @@
                 nouveauCompte = New Compte
             Else
                 nouveauCompte = New CompteAvecPlafond
-                CType(nouveauCompte, CompteAvecPlafond).lePlafond = TextBox_plafond.Text
+                CType(nouveauCompte, CompteAvecPlafond).lePlafond = CDbl(TextBox_plafond.Text)
             End If
 
             CType(nouveauCompte, Compte).leNom = TextBox_nom.Text
             CType(nouveauCompte, Compte).lePrenom = TextBox_prenom.Text
             CType(nouveauCompte, Compte).laDateNaissance = TextBox_dateNaissance.Text
             CType(nouveauCompte, Compte).laDateCreation = TextBox_dateCreation.Text
-            CType(nouveauCompte, Compte).leSolde = TextBox_solde.Text
+            CType(nouveauCompte, Compte).leSolde = CDbl(TextBox_solde.Text)
             CType(nouveauCompte, Compte).leTypeCompte = ComboBox_type.Text
 
-            gestionComptes.modifierUnCompte(ListBox_nom.Items(ListBox_nom.SelectedIndex), nouveauCompte)
+            gestionComptes.modifierUnCompte(CType(ListBox_nom.Items(ListBox_nom.SelectedIndex), String), nouveauCompte)
         End If
 
         rafraichirListeComptes()

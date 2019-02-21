@@ -91,6 +91,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestionDB.vb" />
     <Compile Include="ImportComptes.vb" />
     <Compile Include="Compte.vb" />
     <Compile Include="CompteAvecPlafond.vb" />
