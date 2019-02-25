@@ -30,8 +30,6 @@ Public Class GestionDB
     'Private _solde As Double
     'Private _plafond As Double
 
-
-
     Public Sub ajouterCompteDB(monCompte As Object)
         Try
             Dim strSQL As String = "INSERT INTO COMPTE VALUES (@id,@Nom,@prenom,@dateNaissance,@codeCompte,@dateCreation,@typeCompte,@solde,@plafond)"
@@ -91,14 +89,14 @@ Public Class GestionDB
         Dim DR As SQLiteDataReader = cmd.ExecuteReader
         '
         While (DR.Read())
-            leCompte.leNom = DR(1)
-            leCompte.lePrenom = DR(2)
-            leCompte.laDateNaissance = DR(3)
-            leCompte.leNumeroCompte = DR(4)
-            leCompte.laDateCreation = DR(5)
-            leCompte.leTypeCompte = DR(6)
-            leCompte.leSolde = DR(7)
-            leCompte.lePlafond = DR(8)
+            leCompte.leNom = DR("nom")
+            leCompte.lePrenom = DR("prenom")
+            leCompte.laDateNaissance = DR("dateNaissance")
+            leCompte.leNumeroCompte = DR("codeCompte")
+            leCompte.laDateCreation = DR("dateCreation")
+            leCompte.leTypeCompte = DR("typeCompte")
+            leCompte.leSolde = DR("solde")
+            leCompte.lePlafond = DR("plafond")
         End While
         DR.Close()
         cmd.Dispose()
@@ -119,7 +117,7 @@ Public Class GestionDB
         maCollection.Clear()
         While (DR.Read())
             'DR(4) est le codeCompte
-            maCollection.Add(DR(0))
+            maCollection.Add(DR("codeCompte"))
         End While
         DR.Close()
     End Sub
