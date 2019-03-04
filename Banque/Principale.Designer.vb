@@ -22,6 +22,7 @@ Partial Class form_principale
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(form_principale))
         Me.Button_quitter = New System.Windows.Forms.Button()
         Me.OpenFileDialog_fichier = New System.Windows.Forms.OpenFileDialog()
@@ -55,15 +56,23 @@ Partial Class form_principale
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.QuitterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem_aide = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExempleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AProposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel_compte = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button_quitter
         '
-        Me.Button_quitter.Location = New System.Drawing.Point(513, 352)
+        Me.Button_quitter.Location = New System.Drawing.Point(513, 335)
         Me.Button_quitter.Name = "Button_quitter"
         Me.Button_quitter.Size = New System.Drawing.Size(75, 23)
         Me.Button_quitter.TabIndex = 0
@@ -290,13 +299,13 @@ Partial Class form_principale
         Me.FichierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NouveauToolStripMenuItem, Me.ToolStripSeparator1, Me.OuvrirToolStripMenuItem, Me.FermerToolStripMenuItem, Me.ToolStripSeparator2, Me.QuitterToolStripMenuItem})
         Me.FichierToolStripMenuItem.Name = "FichierToolStripMenuItem"
         Me.FichierToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
-        Me.FichierToolStripMenuItem.Text = "Fichier"
+        Me.FichierToolStripMenuItem.Text = "&Fichier"
         '
         'NouveauToolStripMenuItem
         '
         Me.NouveauToolStripMenuItem.Name = "NouveauToolStripMenuItem"
         Me.NouveauToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.NouveauToolStripMenuItem.Text = "Nouveau"
+        Me.NouveauToolStripMenuItem.Text = "&Nouveau"
         '
         'ToolStripSeparator1
         '
@@ -323,20 +332,70 @@ Partial Class form_principale
         'QuitterToolStripMenuItem
         '
         Me.QuitterToolStripMenuItem.Name = "QuitterToolStripMenuItem"
+        Me.QuitterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
         Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.QuitterToolStripMenuItem.Text = "Quitter"
         '
         'ToolStripMenuItem_aide
         '
+        Me.ToolStripMenuItem_aide.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExempleToolStripMenuItem, Me.ToolStripSeparator3, Me.AProposToolStripMenuItem})
         Me.ToolStripMenuItem_aide.Name = "ToolStripMenuItem_aide"
         Me.ToolStripMenuItem_aide.Size = New System.Drawing.Size(24, 20)
         Me.ToolStripMenuItem_aide.Text = "?"
+        '
+        'ExempleToolStripMenuItem
+        '
+        Me.ExempleToolStripMenuItem.Name = "ExempleToolStripMenuItem"
+        Me.ExempleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExempleToolStripMenuItem.Text = "Exemple"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
+        '
+        'AProposToolStripMenuItem
+        '
+        Me.AProposToolStripMenuItem.Name = "AProposToolStripMenuItem"
+        Me.AProposToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AProposToolStripMenuItem.Text = "A propos"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel_compte, Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 369)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(626, 22)
+        Me.StatusStrip1.TabIndex = 29
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel_compte
+        '
+        Me.ToolStripStatusLabel_compte.Name = "ToolStripStatusLabel_compte"
+        Me.ToolStripStatusLabel_compte.Size = New System.Drawing.Size(0, 17)
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(121, 17)
+        Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "gardeFace.bmp")
+        Me.ImageList1.Images.SetKeyName(1, "homme1.bmp")
+        Me.ImageList1.Images.SetKeyName(2, "capitaineFantomeFace.bmp")
+        Me.ImageList1.Images.SetKeyName(3, "filleFace.bmp")
+        Me.ImageList1.Images.SetKeyName(4, "GarconFace.bmp")
         '
         'form_principale
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(626, 391)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -356,6 +415,8 @@ Partial Class form_principale
         Me.GroupBox3.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -393,4 +454,11 @@ Partial Class form_principale
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents QuitterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem_aide As ToolStripMenuItem
+    Friend WithEvents AProposToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents ToolStripStatusLabel_compte As ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents ExempleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents ImageList1 As ImageList
 End Class

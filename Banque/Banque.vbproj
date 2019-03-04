@@ -100,8 +100,15 @@
     <Compile Include="Aide.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="exemple.Designer.vb">
+      <DependentUpon>exemple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="exemple.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GestionDB.vb" />
     <Compile Include="GestionDesComptesDB.vb" />
+    <Compile Include="GestionExempleDB.vb" />
     <Compile Include="ImportComptes.vb" />
     <Compile Include="Compte.vb" />
     <Compile Include="CompteAvecPlafond.vb" />
@@ -131,6 +138,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="exemple.resx">
+      <DependentUpon>exemple.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principale.resx">
       <DependentUpon>Principale.vb</DependentUpon>
     </EmbeddedResource>

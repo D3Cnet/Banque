@@ -4,6 +4,7 @@ Public Class GestionDB
     ' Gestion de la base de données
     ' Code trouvé sur le site https://codes-sources.commentcamarche.net/source/54387-tutorial-utilisation-sqlite-avec-visual-basic-net-2010-express
 
+    'Chemin vers le fichier sqlite contenant la base de données. La constante est définie dans le module constantes.vb
     Private _Database As String = CHEMINDB
     Dim CON As New SQLiteConnection
     '
@@ -20,15 +21,6 @@ Public Class GestionDB
         CON.Close()
     End Sub
 
-
-    'Private _nom As String
-    'Private _prenom As String
-    'Private _dateNaissance As String
-    'Private _dateCreation As String
-    'Private _numeroCompte As String
-    'Private _typeCompte As String
-    'Private _solde As Double
-    'Private _plafond As Double
 
     Public Sub ajouterCompteDB(monCompte As Object)
         Try

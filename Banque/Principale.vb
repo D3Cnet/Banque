@@ -16,9 +16,6 @@ Public Class form_principale
         rafraichirListeComptes()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_quitter.Click, QuitterToolStripMenuItem.Click
-        Close()
-    End Sub
 
     Private Sub Button_add_Click(sender As Object, e As EventArgs) Handles Button_add.Click
         Dim nouveauCompte As Object
@@ -77,6 +74,8 @@ Public Class form_principale
             TextBox_dateCreation.Text = CType(monCompte, Compte).laDateCreation
             TextBox_solde.Text = CStr(CType(monCompte, Compte).leSolde)
             ComboBox_type.Text = CType(monCompte, Compte).leTypeCompte
+
+            ToolStripStatusLabel_compte.Text = "Le compte ouvert est : " & CStr(CType(monCompte, Compte).leNumeroCompte)
         End If
 
     End Sub
@@ -131,9 +130,28 @@ Public Class form_principale
         gestionComptes.listeComptes(ListBox_nom.Items)
     End Sub
 
-    Private Sub ToolStripMenuItem_aide_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_aide.Click
-        Dim maFormAide As Form_aide
-        maFormAide = New Form_aide()
-        maFormAide.ShowDialog()
+
+    Private Sub AProposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AProposToolStripMenuItem.Click
+        'Dim maFormAide As form_aide
+        'maFormAide = New form_aide()
+        'maFormAide.ShowDialog()
+
+        With New Form_aide
+            .ShowDialog()
+        End With
+    End Sub
+
+    Private Sub FichierToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FichierToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub Button_quitter_Click(sender As Object, e As EventArgs) Handles Button_quitter.Click, QuitterToolStripMenuItem.Click
+        Close()
+    End Sub
+
+    Private Sub ExempleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExempleToolStripMenuItem.Click
+        With New Exemple
+            .ShowDialog()
+        End With
     End Sub
 End Class
