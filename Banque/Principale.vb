@@ -3,7 +3,7 @@ Option Strict On
 
 Public Class form_principale
 
-    Public gestionComptes As GestionDesComptesDB
+    Public gestionComptes As GestionDesComptesSingletonDB
     '    Public gestionComptesMEM As GestionDesComptes = New GestionDesComptes
 
     Public Sub New()
@@ -12,7 +12,7 @@ Public Class form_principale
         InitializeComponent()
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
-        gestionComptes = New GestionDesComptesDB
+        gestionComptes = New GestionDesComptesSingletonDB
         rafraichirListeComptes()
     End Sub
 

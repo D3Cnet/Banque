@@ -49,4 +49,8 @@
         _gestionDB.listeComptesDB(maCollection)
     End Sub
 
+    Public Function ListeCompteComplete(maRequete As String, maTable As String) As DataSet
+        Return _gestionDB.LitSQL(maRequete, maTable)
+    End Function
+
 End Class

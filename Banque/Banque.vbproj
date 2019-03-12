@@ -26,6 +26,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Banque.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,7 +48,7 @@
     <OptionStrict>Off</OptionStrict>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionInfer>On</OptionInfer>
+    <OptionInfer>Off</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>eur-crypto-cryptocurrency-cryptocurrencies-cash-money-bank-payment_95812.ico</ApplicationIcon>
@@ -108,6 +109,7 @@
     </Compile>
     <Compile Include="GestionDB.vb" />
     <Compile Include="GestionDesComptesDB.vb" />
+    <Compile Include="GestionDesComptesSingletonDB.vb" />
     <Compile Include="GestionExempleDB.vb" />
     <Compile Include="ImportComptes.vb" />
     <Compile Include="Compte.vb" />
@@ -136,6 +138,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SqlDB.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="exemple.resx">
@@ -168,7 +171,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Compte.sql" />
+    <Content Include="exportCompte.sql" />
     <Content Include="eur-crypto-cryptocurrency-cryptocurrencies-cash-money-bank-payment_95812.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

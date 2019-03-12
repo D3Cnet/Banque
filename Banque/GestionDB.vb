@@ -114,6 +114,22 @@ Public Class GestionDB
         DR.Close()
     End Sub
 
+    'Public Function ListeCompteComplete() As SQLiteDataReader
+    '    Dim cmd = New SQLiteCommand("SELECT codeCompte, nom, prenom, solde FROM compte", CON)
+    '    Dim DR As SQLiteDataReader = cmd.ExecuteReader
+    '    Return DR
+    'End Function
+
+    Public Function LitSQL(requete As String, table As String) As DataSet
+        Dim donnees As DataSet = New DataSet
+        Dim connexion As New SQLiteConnection(CON)
+        Dim Commande As New SQLiteCommand(requete, connexion)
+        Dim Adaptateur As New SQLiteDataAdapter(Commande)
+        Adaptateur.Fill(donnees, table)
+        Return donnees
+    End Function
+
+
     Public Function nouvelIdentifiantUniqueDB() As Integer
         Dim NewID As Integer = 1
         Dim cmd = New SQLiteCommand("SELECT MAX(id) FROM Compte", CON)

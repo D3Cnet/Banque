@@ -25,6 +25,9 @@ Partial Class Exemple
         Me.Label_X = New System.Windows.Forms.Label()
         Me.Label_Y = New System.Windows.Forms.Label()
         Me.CheckBox_Sortie = New System.Windows.Forms.CheckBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.DataGridView_compte = New System.Windows.Forms.DataGridView()
+        CType(Me.DataGridView_compte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label_X
@@ -55,17 +58,37 @@ Partial Class Exemple
         Me.CheckBox_Sortie.Text = "Autoriser la sortie"
         Me.CheckBox_Sortie.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(607, 385)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'DataGridView_compte
+        '
+        Me.DataGridView_compte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView_compte.Location = New System.Drawing.Point(195, 32)
+        Me.DataGridView_compte.Name = "DataGridView_compte"
+        Me.DataGridView_compte.Size = New System.Drawing.Size(460, 265)
+        Me.DataGridView_compte.TabIndex = 6
+        '
         'Exemple
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.DataGridView_compte)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.CheckBox_Sortie)
         Me.Controls.Add(Me.Label_Y)
         Me.Controls.Add(Me.Label_X)
         Me.Name = "Exemple"
         Me.RightToLeftLayout = True
         Me.Text = "Exemple"
+        CType(Me.DataGridView_compte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -74,4 +97,6 @@ Partial Class Exemple
     Friend WithEvents Label_X As Label
     Friend WithEvents Label_Y As Label
     Friend WithEvents CheckBox_Sortie As CheckBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents DataGridView_compte As DataGridView
 End Class

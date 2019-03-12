@@ -34,4 +34,11 @@ Public Class Exemple
         Cancel = Not CheckBox_Sortie.Checked
         e.Cancel = Cancel
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim requete = "SELECT codeCompte, nom, prenom, solde FROM compte"
+        Dim donnees As DataSet = SqlDb.Instance.LitSQL(requete, "compte")
+        DataGridView_compte.DataSource = donnees.Tables("compte")
+
+    End Sub
 End Class

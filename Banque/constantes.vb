@@ -6,5 +6,7 @@
     Public Const PEL As String = "Plan d'épargne logement"
 
     Public Const CHEMINDB As String = "C:\Users\dcamenen\source\repos\Banque\Banque\Banque.db"
+    Public Const CHEMINDB As String = ".\Banque.db"
+
 
 End Module
